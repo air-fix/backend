@@ -11,9 +11,11 @@
 |
 */
 
-Route::resource('order','OrderController');
-Route::resource('board','BoardController');
-Route::resource('card','CardController');
+Route::group(['middleware' => 'api'], function () {
+    Route::resource('order','OrderController');
+    Route::resource('board','BoardController');
+    Route::resource('card','CardController');
+});
 
 Route::get('/', function () {
     return view('welcome');
