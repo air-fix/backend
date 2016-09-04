@@ -8,7 +8,27 @@
 
 namespace App\Services;
 
+use App\Repositories\OrderRepository;
+
 class AirFix
 {
+    public static function createNewOrder()
+    {
+        // OrderRepository::create();
+    }
 
+    public static function lists()
+    {
+        // OrderRepository::lists();
+    }
+
+    public static function show()
+    {
+        // OrderRepository::show();
+    }
+
+    public static function handle()
+    {
+        // OrderRepository::updateStatus();
+    }
 }
