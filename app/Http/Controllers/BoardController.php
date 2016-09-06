@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AirFix;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -20,7 +21,7 @@ class BoardController extends Controller
 
         // TODO 调用Service处理业务
         // AirFix::lists(...);
-
+        return AirFix::lists();
         // TODO 输出结果
         // return [...];
     }

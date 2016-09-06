@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AirFix;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -52,7 +53,7 @@ class CardController extends Controller
 
         // TODO 调用Service处理业务
         // AirFix::show(...);
-
+        return AirFix::show($id);
         // TODO 输出结果
         // return [...];
     }
@@ -85,7 +86,7 @@ class CardController extends Controller
         // 进行中：完结 / 放弃并说明原因；
         // 完结：返工
         // AirFix::handle(...);
-
+        return AirFix::handle($id,$request->all());
         // TODO 输出结果
         // return [...];
     }
