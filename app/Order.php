@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Repositories\OrderRepository;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
