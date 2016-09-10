@@ -20,7 +20,3 @@ Route::group(['middleware' => 'api'], function () {
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::any('demo',function (){
-   return view('test');
-});

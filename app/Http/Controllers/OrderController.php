@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
-    protected $message;
     /**
      * Display a listing of the resource.
      *
@@ -51,7 +50,7 @@ class OrderController extends Controller
         ]);
 
         if ($validator->fails()) {
-            $this->message =  $validator->errors()->all();
+            $message =  $validator->errors()->all();
         }else{
             // TODO 调用Service处理业务
             // AirFix::createNewOrder(...);
@@ -59,15 +58,15 @@ class OrderController extends Controller
             //dd($input);
             $result = AirFix::createNewOrder($input);
             if($result){
-                $this->message = '报修成功!!';
+                $message = '报修成功!!';
             }else {
-                $this->message = '报修失败，请稍后再试';
+                $message = '报修失败，请稍后再试';
             }
         }
 
         // TODO 输出结果
         // return [...];
-        return $this->message;
+        return $message;
     }
 
 
