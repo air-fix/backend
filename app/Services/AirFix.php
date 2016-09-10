@@ -12,23 +12,23 @@ use App\Repositories\OrderRepository;
 
 class AirFix
 {
-    public static function createNewOrder()
+    public static function createNewOrder($infos)
     {
-        // OrderRepository::create();
+        return OrderRepository::create($infos);
     }
 
-    public static function lists()
+    public static function lists($status = null, $rows = 15)
     {
-        // OrderRepository::lists();
+        return OrderRepository::lists($status, $rows);
     }
 
-    public static function show()
+    public static function show($id)
     {
-        // OrderRepository::show();
+        return OrderRepository::show($id);
     }
 
-    public static function handle()
+    public static function handle($id, $infos)
     {
-        // OrderRepository::updateStatus();
+        return OrderRepository::updateStatus($id, $infos);
     }
 }

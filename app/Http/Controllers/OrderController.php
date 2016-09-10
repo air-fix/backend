@@ -42,7 +42,7 @@ class OrderController extends Controller
 
         // TODO 调用Service处理业务
         // AirFix::createNewOrder(...);
-
+        return AirFix::createNewOrder($request->all());
         // TODO 输出结果
         // return [...];
     }

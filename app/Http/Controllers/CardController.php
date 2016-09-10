@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AirFix;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -47,14 +48,7 @@ class CardController extends Controller
      */
     public function show($id)
     {
-        // TODO 输入校验
-        // $this->validate(...);
-
-        // TODO 调用Service处理业务
-        // AirFix::show(...);
-
-        // TODO 输出结果
-        // return [...];
+        return AirFix::show($id);
     }
 
     /**
@@ -77,17 +71,13 @@ class CardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // TODO 输入校验
-        // $this->validate(...);
-
-        // TODO 调用Service处理业务
-        // 未处理：接手 / 拒绝受理并说明原因；
-        // 进行中：完结 / 放弃并说明原因；
-        // 完结：返工
-        // AirFix::handle(...);
-
-        // TODO 输出结果
-        // return [...];
+        $this->validate($request,
+            [
+                'status'      => 'required|in:fresh,working,dirty,declined',
+                'description' => 'required',
+            ]
+        );
+        return AirFix::handle($id, $request->all());
     }
 
     /**
