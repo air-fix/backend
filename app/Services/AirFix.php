@@ -17,9 +17,9 @@ class AirFix
         return OrderRepository::create($infos);
     }
 
-    public static function lists()
+    public static function lists($status = null, $rows = 15)
     {
-        return OrderRepository::lists();
+        return OrderRepository::lists($status, $rows);
     }
 
     public static function show($id)

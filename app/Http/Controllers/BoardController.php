@@ -14,16 +14,13 @@ class BoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // TODO 输入校验，并获取筛选参数（未处理 / 进行中 / 完结）
-        // $this->validate(...);
+        $this->validate($request, [
+            'status' => 'required|in:fresh,working,dirty,declined',
+        ]);
 
-        // TODO 调用Service处理业务
-        // AirFix::lists(...);
-        return AirFix::lists();
-        // TODO 输出结果
-        // return [...];
+        return AirFix::lists($request->input('status'));
     }
 
     /**
@@ -39,7 +36,7 @@ class BoardController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,7 +47,7 @@ class BoardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -61,7 +58,7 @@ class BoardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -72,8 +69,8 @@ class BoardController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -84,7 +81,7 @@ class BoardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

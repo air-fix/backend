@@ -17,9 +17,13 @@ class OrderRepository
         return Order::create($infos);
     }
 
-    public static function lists()
+    public static function lists($status, $rows)
     {
-        return Order::paginate(15);
+        if ($status) {
+            return Order::where('status', $status)->paginate($rows);
+        }
+
+        return Order::paginate($rows);
     }
 
     public static function show($id)
@@ -27,8 +31,8 @@ class OrderRepository
         return Order::find($id);
     }
 
-    public static function updateStatus($id,$infos)
+    public static function updateStatus($id, $infos)
     {
-        return Order::where('id',$id)->update($infos);
+        return Order::where('id', $id)->update($infos);
     }
 }
