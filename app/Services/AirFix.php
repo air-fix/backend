@@ -17,8 +17,10 @@ class AirFix
         return OrderRepository::create($infos);
     }
 
-    public static function lists($status = null, $rows = 15)
+    public static function lists($status = null)
     {
+        $rows = config('airfix.rows_per_page');
+
         return OrderRepository::lists($status, $rows);
     }
 

@@ -71,12 +71,11 @@ class CardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,
-            [
-                'status'      => 'required|in:fresh,working,dirty,declined',
-                'description' => 'required',
-            ]
-        );
+        $this->validate($request, [
+            'status'      => 'required|in:fresh,working,dirty,declined',
+            'description' => 'required',
+        ]);
+
         return AirFix::handle($id, $request->all());
     }
 
