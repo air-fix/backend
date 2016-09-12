@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
-    protected $message;
     /**
      * Display a listing of the resource.
      *
