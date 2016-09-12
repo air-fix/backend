@@ -15,11 +15,7 @@ class OrderRepository
     public static function create($input)
     {
         $result = Order::create($input);
-        if($result){
-            return 1;
-        }else{
-            return 0;
-        }
+        return $result ? 1 : 0 ;
     }
 
     public static function lists()
