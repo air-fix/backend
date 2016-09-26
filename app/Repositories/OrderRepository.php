@@ -8,10 +8,14 @@
 
 namespace App\Repositories;
 
+use App\Order;
+
 class OrderRepository
 {
-    public static function create()
+    public static function create($input)
     {
+        $result = Order::create($input);
+        return $result ? 1 : 0 ;
     }
 
     public static function lists()

@@ -12,9 +12,11 @@ use App\Repositories\OrderRepository;
 
 class AirFix
 {
-    public static function createNewOrder()
+    public static function createNewOrder($input)
     {
         // OrderRepository::create();
+        $result = OrderRepository::create($input);
+        return $result;
     }
 
     public static function lists()
