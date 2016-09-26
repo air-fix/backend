@@ -6,6 +6,7 @@ use App\Services\AirFix;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
@@ -16,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -37,15 +38,37 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        $input = $request->except('_token');
+
         // TODO 输入校验
         // $this->validate(...);
+        $validator = Validator::make($request->all(), [
+            'building' => 'required',
+            'room' => 'required',
+            'contact' => 'required',
+            'description' => 'required',
+        ]);
 
-        // TODO 调用Service处理业务
-        // AirFix::createNewOrder(...);
+        if ($validator->fails()) {
+            $this->message =  $validator->errors()->all();
+        }else{
+            // TODO 调用Service处理业务
+            // AirFix::createNewOrder(...);
+            $input['status'] = 'fresh';
+            //dd($input);
+            $result = AirFix::createNewOrder($input);
+            if($result){
+                $this->message = '报修成功!!';
+            }else {
+                $this->message = '报修失败，请稍后再试';
+            }
+        }
 
         // TODO 输出结果
         // return [...];
+        return $this->message;
     }
+
 
     /**
      * Display the specified resource.
